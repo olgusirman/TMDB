@@ -1,4 +1,17 @@
+import { useEffect } from 'react';
+import { getPopularMovies } from '../../api/movieProvider';
+
 const HomeView = () => {
+  useEffect(() => {
+    const fetchMovies = async () => {
+      const movieType = getPopularMovies();
+      console.log(movieType);
+      return movieType;
+    };
+
+    fetchMovies();
+  }, []);
+
   return (
     <div>
       <div className='m-4 mb-8 w-auto px-4 mx-auto sm:w-1/2 md:w-1/3 lg:w-1/4'>
