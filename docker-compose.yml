@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  soz_senin_frontend:
+    build:
+      context: .
+      args:
+        env: test
+    image: kobilsystems.azurecr.io/ibb/miniapp/soz-senin:1.0.0
+    env_file:
+      - .env.test
+    ports:
+      - "80:3000"
+      - "443:443"
+    volumes:
+      - ./:/var/www/html
