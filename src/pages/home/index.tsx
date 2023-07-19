@@ -12,9 +12,7 @@ const HomeView = () => {
       return movieType;
     };
 
-    const movieResult = fetchMovies();
-
-    movieResult
+    fetchMovies()
       .then((result) => {
         setMovies(result.results);
       })
@@ -25,7 +23,7 @@ const HomeView = () => {
 
   return (
     <>
-      <h1>Popular Movies</h1>
+      <h1 className='mb-2 text-lg font-bold'>Popular Movies</h1>
       <MovieList results={movies} />
     </>
   );
