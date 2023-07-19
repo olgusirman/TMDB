@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { getPopularMovies } from '../../api/movieProvider';
 import { MovieListResultItem } from '../../types/movieResultType';
-import MovieCard from '../../components/movieCard';
+import MovieList from '../../components/movieList';
 
 const HomeView = () => {
   const [movies, setMovies] = useState<MovieListResultItem[]>([]);
@@ -26,16 +26,7 @@ const HomeView = () => {
   return (
     <>
       <h1>Popular Movies</h1>
-      <div className='grid gap-8'>
-        {movies.map((movie) => (
-          <MovieCard
-            key={movie.id}
-            title={movie.title}
-            release_date={movie.release_date}
-            backdrop_path={movie.backdrop_path}
-          />
-        ))}
-      </div>
+      <MovieList results={movies} />
     </>
   );
 };
