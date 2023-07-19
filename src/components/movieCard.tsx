@@ -1,17 +1,16 @@
 type MovieCardProps = {
-  id: number;
   title: string;
   release_date: string;
-  backdrop_path: string;
+  backdrop_path: string | null;
 };
 
-const MovieCard = ({ id, title, release_date, backdrop_path }: MovieCardProps) => {
+const MovieCard = ({ title, release_date, backdrop_path }: MovieCardProps) => {
   return (
     <div className='m-4 mb-8 w-auto px-4 mx-auto sm:w-1/2 md:w-1/3 lg:w-1/4'>
       <div className='rounded-lg bg-white shadow-lg'>
         <img
           src={`https://image.tmdb.org/t/p/original/${backdrop_path}`}
-          alt={id}
+          alt={title}
           className='rounded-t-lg'
         />
         <div className='p-4'>

@@ -31,6 +31,4 @@ export type Movie = MovieDetailsResult | MovieListResultItem;
 export interface MovieListResult {
   page: number;
   results: MovieListResultItem[];
-  total_results: number;
-  total_pages: number;
 }

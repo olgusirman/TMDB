@@ -1,40 +1,42 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { getPopularMovies } from '../../api/movieProvider';
+import { MovieListResultItem } from '../../types/movieResultType';
+import MovieCard from '../../components/movieCard';
 
 const HomeView = () => {
+  const [movies, setMovies] = useState<MovieListResultItem[]>([]);
+
   useEffect(() => {
     const fetchMovies = async () => {
       const movieType = getPopularMovies();
-      console.log(movieType);
       return movieType;
     };
 
-    fetchMovies();
+    const movieResult = fetchMovies();
+
+    movieResult
+      .then((result) => {
+        setMovies(result.results);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }, []);
 
   return (
-    <div>
-      <div className='m-4 mb-8 w-auto px-4 mx-auto sm:w-1/2 md:w-1/3 lg:w-1/4'>
-        <div className='rounded-lg bg-white shadow-lg'>
-          <img
-            src='https://source.unsplash.com/400x500/?dark'
-            alt='movie poster'
-            className='rounded-t-lg'
+    <>
+      <h1>Popular Movies</h1>
+      <div className='grid gap-8'>
+        {movies.map((movie) => (
+          <MovieCard
+            key={movie.id}
+            title={movie.title}
+            release_date={movie.release_date}
+            backdrop_path={movie.backdrop_path}
           />
-          <div className='p-4'>
-            <h2 className='mb-2 text-lg font-semibold'>Movie Title</h2>
-            <p className='mb-2 text-sm text-gray-700'>Release Date: January 1, 2023</p>
-            <p className='mb-4 text-sm text-gray-700'>Director: John Doe</p>
-            <a
-              href='https://www.google.com/'
-              className='block rounded-lg bg-blue-500 px-4 py-2 text-center font-semibold text-white hover:bg-blue-600'
-            >
-              Add to Favourites
-            </a>
-          </div>
-        </div>
+        ))}
       </div>
-    </div>
+    </>
   );
 };
 
