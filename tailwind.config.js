@@ -23,7 +23,7 @@ export const theme = {
     },
     borderRadius: {
       sm: '8px',
-      lg: '100px',
+      lg: '14px',
     },
     zIndex: {
       9: '99999',

@@ -1,4 +1,4 @@
-import { ButtonType } from '../../types/generals';
+import { ButtonType } from '../types/generals';
 
 function WideButton({
   type,
